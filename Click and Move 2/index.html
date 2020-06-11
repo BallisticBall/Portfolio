@@ -1,0 +1,71 @@
+<html>
+
+<head>
+
+<style type="text/css">
+
+div{position: absolute;}
+
+</style>
+
+<script type="text/javascript">
+
+function NHNum(Num1) {if (typeof Num1 == "string") {
+
+var Num1 = document.getElementById(Num1);
+
+Num1.orig_index = Num1.style.zIndex; }
+
+Num1.onmousedown = function (CRVNum) {
+
+var KNum = document;
+
+if (!CRVNum) CRVNum = window.event;
+
+var Num2 = CRVNum.clientX - document.body.scrollLeft - Num1.offsetLeft;
+
+var Num3 = CRVNum.clientY - document.body.scrollTop - Num1.offsetTop;
+
+KNum.onmousemove = function (CRVNum) {
+
+if (!CRVNum) CRVNum = window.event;
+
+Num1.style.left = CRVNum.clientX + document.body.scrollLeft - Num2;
+
+Num1.style.top = CRVNum.clientY + document.body.scrollTop - Num3;}
+
+KNum.onmouseup = function () {document.onmousemove = null;}}}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="img1"><img src="FF Psycho Pyro Logo 2.jpg" style="width:500px;" /></div>
+
+<div id="img2"><img src="Dragon.jpg" style="width:500px;" /></div>
+
+<div id="img3"><img src="Fire Portfolio_image 02.jpg" style="width:500px;" /></div>
+
+<div id="img4"><img src="Glass Logo 02c-01.jpg" style="width:500px;" /></div>
+
+ 
+
+<script type="text/javascript">
+
+NHNum("img1");
+
+NHNum("img2");
+
+NHNum("img3");
+
+NHNum("img4");
+
+ 
+
+</script>
+
+</body>
+
+</html>

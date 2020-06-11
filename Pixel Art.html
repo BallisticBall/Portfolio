@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+ 
+
+<!-- Fig. 13.4: draw.html -->
+
+<!-- A simple drawing program. --><html>
+
+<head>
+
+    <title>Simple Drawing Program</title>
+
+     <style>
+
+#canvas { width: 500px;
+
+border: 1px solid #999999;
+
+border-collapse: collapse; }
+
+td { width: 4px; height: 4px; margin: 0px; padding: 0px; }
+
+.blue { background-color: blue; }
+
+.red { background-color: red; }
+
+.white { background-color: white; }
+
+</style>
+
+<script type="text/javascript">
+
+function createCanvas(){
+
+var side = 100;
+
+var tbody = document.getElementById("tablebody");
+
+ 
+
+for(var i=0; i< side; ++i){
+
+var row = document.createElement("tr");
+
+ 
+
+for(var j=0; j < side; ++j){
+
+var cell=document.createElement("td");
+
+row.appendChild(cell);
+
+} //end for
+
+ 
+
+tbody.appendChild(row);
+
+ 
+
+} //end for
+
+ 
+
+//register mousemove listener for the table
+
+document.getElementById("canvas").addEventListener("mousemove", processMouseMove, false);
+
+ 
+
+   //Registering button click event
+
+   document.getElementById("btnClear").addEventListener("click", erase, false);
+
+    
+
+}//end function CreateCanvas
+
+ 
+
+//process the onmousemove event
+
+function processMouseMove(e){
+
+if(e.target.tagName.toLowerCase() == "td" ){
+
+//turn cell blue if the Ctrl key is pressed
+
+if(e.ctrlKey){
+
+e.target.setAttribute("class", "blue");
+
+}//end if
+
+ 
+
+//turn the cell red if the Shift Key is pressed
+
+if(e.shiftKey){
+
+e.target.setAttribute("class", "red");
+
+}//end if
+
+ 
+
+//turn the cell white if the Alt Key is pressed
+
+if (e.altKey) {
+
+e.target.setAttribute("class", "white");
+
+} //end if
+
+}//end if
+
+}//end function processMouseMove
+
+ 
+
+       window.addEventListener("load",createCanvas,false);
+
+     
+
+       //Function that clears drawing window
+
+       function erase()
+
+       {
+
+           //Getting table
+
+           var table = document.getElementById('canvas'),
+
+         
+
+           //Calculating number of rows
+
+           rows = table.rows;
+
+         
+
+           //Variables
+
+           var row, cells, c, cell;
+
+             
+
+           //Iterating over rows 
+
+           for( row=0; row<rows.length; row++)
+
+           {
+
+               //Fetching cells of a row
+
+               cells = rows[row].cells;
+
+             
+
+               //Iterating over cells
+
+               for( c=0; c<cells.length; c++)
+
+               {
+
+                   //Fetching each cell
+
+                   cell = cells[c];
+
+                 
+
+                   //Changing attribute of cell
+
+                   cell.setAttribute("class", "white");
+
+               }
+
+           }
+
+       }
+
+  
+
+</script>
+
+</head>
+
+<body>
+
+<h1> Pixel Art </h1>
+
+<table id="canvas">
+
+<caption>Hold <em>Ctrl</em> (or <em>Control</em>) to draw blue.
+
+        Hold <em>Shift</em> to draw red. Hold <em>Alt</em> to erase.</caption>
+
+<tbody id="tablebody"></tbody>
+
+</table>
+
+ 
+
+<!-- Adding a button -->
+
+<input type="button" value="Clear Window" id="btnClear">
+
+ 
+
+</body>
+
+</html>
